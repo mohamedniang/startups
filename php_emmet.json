@@ -1,0 +1,11 @@
+{
+    "Initializer PHP": {
+        "prefixe": ["php"],
+        "body": [
+            "<?php",
+            "",
+            "?>"
+        ],
+        "description": "A php init bracket"
+    }
+}
