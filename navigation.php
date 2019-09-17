@@ -1,6 +1,6 @@
 <header class="mb-2 mt-0">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="index.php?page=acceuil"><i class="fas fa-home fa-1x"></i></a>
+        <a class="navbar-brand text-uppercase" href="index.php?page=acceuil"><i class="fas fa-home fa-1x"></i> Sénégal Startups</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,15 +12,29 @@
                 </li>
                 <li class="nav-item dropdown">
                     <!-- <a id="liste" class="nav-link dropdown-toggle" href="index.php?page=listestartup">Les Startups</a> -->
-                    <a class="nav-link dropdown-toggle" href="#" id="liste" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="liste" role="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
                         Startups
                     </a>
                     <div class="dropdown-menu" aria-labelledby="liste">
-                        <a class="dropdown-item" href="index.php?page=listestartup">Liste complete</a>
+                        <a class="dropdown-item" href="index.php?page=listestartup&p=1">Liste complete</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Domaine ICT Network</a>
-                        <a class="dropdown-item" href="#">Domaine ICT Service</a>
-                        <a class="dropdown-item" href="#">Domaine ICT Advance</a>
+                        <form action="index.php?page=listestartup" method="POST">
+                            <button class="dropdown-item" type="submit" name="sf">Domaine Software</button>
+                            <button class="dropdown-item" type="submit" name="hd">Domaine Hardware</button>
+                            <button class="dropdown-item" type="submit" name="nt">Domaine ICT Network</button>
+                            <button class="dropdown-item" type="submit" name="sc">Domaine ICT Service</button>
+                            <button class="dropdown-item" type="submit" name="ad">Domaine ICT Advance</button>
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        Labellisation
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.php?page=labelProcessus">Processus de labellisation</a>
+                        <a class="dropdown-item" href="index.php?page=labelEnrStartups">Startups Enregistrés</a>
+                        <a class="dropdown-item" href="index.php?page=labelLabStartups">Startups Labellisés</a>
                     </div>
                 </li>
                 <?php

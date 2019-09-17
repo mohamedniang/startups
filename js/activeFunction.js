@@ -1,6 +1,6 @@
 $(document).ready(() => {
     let lien = window.location.href;
-    console.log(window.location.href);
+    // console.log(window.location.href);
     if (lien.includes("acceuil")) {
         $("a.nav-link.active").removeClass("active");
         $("#home").addClass("active");

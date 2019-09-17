@@ -6,10 +6,11 @@ $(document).ready(() => {
     let stepTwo = $("#juridiction")
     let stepThree = $("#infoAvance")
     let stepFinal = $("#final")
-    console.log(stepOne[0]);
     if (stepOne[0] != undefined || stepTwo[0] != undefined || stepThree[0] != undefined) {
         if (stepOne[0].className.includes("show active")) {
             prevBtn.hide()
+            $("#stepBar").attr("style", "width: 25%");
+            $("#stepBar").text("Informations Personelles");
         }
         nextBtn.click(function(e) {
             e.preventDefault();
@@ -107,6 +108,8 @@ $(document).ready(() => {
                     if (stepOne[0].className.includes("show active")) {
                         stepOne.removeClass("show active");
                         stepTwo.addClass("show active");
+                        $("#stepBar").attr("style", "width: 50%");
+                        $("#stepBar").text("Statut Juridique");
                         prevBtn.show();
                     }
                 }
@@ -144,6 +147,8 @@ $(document).ready(() => {
                     regionValid) {
                     stepTwo.removeClass("show active");
                     stepThree.addClass("show active");
+                    $("#stepBar").attr("style", "width: 75%");
+                    $("#stepBar").text("Informations Avancées");
                 }
             } else if (stepThree[0].className.includes("show active")) {
                 if (description[0].validity.valid && description[0].value != "") {
@@ -198,24 +203,111 @@ $(document).ready(() => {
                     efftValid) {
                     stepThree.removeClass("show active");
                     stepFinal.addClass("show active");
+                    $("#stepBar").attr("style", "width: 100%");
+                    $("#stepBar").text("Terminé");
                     nextBtn.hide();
                 }
-            }
+            } else {}
         });
         prevBtn.click(function(e) {
             e.preventDefault();
             if (stepTwo[0].className.includes("show active")) {
                 stepTwo.removeClass("show active");
                 stepOne.addClass("show active");
+                $("#stepBar").attr("style", "width: 25%");
+                $("#stepBar").text("Informations Personelles");
                 prevBtn.hide();
                 nextBtn.show();
             } else if (stepThree[0].className.includes("show active")) {
                 stepThree.removeClass("show active");
                 stepTwo.addClass("show active");
+                nextBtn.show();
+                $("#stepBar").attr("style", "width: 50%");
+                $("#stepBar").text("Statut Juridique");
             } else if (stepFinal[0].className.includes("show active")) {
                 stepFinal.removeClass("show active");
                 stepThree.addClass("show active");
+                nextBtn.show();
+                $("#stepBar").attr("style", "width: 75%");
+                $("#stepBar").text("Informations Avancées");
             }
         });
+        let sfCheck = $("#software")
+        if (sfCheck[0].checked) {
+            $("#sfShow").show()
+        } else {
+            $("#sfShow").hide()
+        }
+        let hdCheck = $("#hardware")
+        if (hdCheck[0].checked) {
+            $("#hdShow").show()
+        } else {
+            $("#hdShow").hide()
+        }
+        let ntCheck = $("#ict_network")
+        if (ntCheck[0].checked) {
+            $("#ntShow").show()
+        } else {
+            $("#ntShow").hide()
+        }
+        let scCheck = $("#ict_service")
+        if (scCheck[0].checked) {
+            $("#scShow").show()
+        } else {
+            $("#scShow").hide()
+        }
+        let adCheck = $("#ict_advance")
+        if (adCheck[0].checked) {
+            $("#adShow").show()
+        } else {
+            $("#adShow").hide()
+        }
+        // let allCheck = [sfCheck, hdCheck, ntCheck, scCheck, adCheck]
+        // allCheck.forEach(elt => {
+        //     console.log(elt);
+        //     elt.click(() => {
+        //         console.log($(this)[0])
+        //     })
+        // })
+        sfCheck.click(() => {
+            console.log(sfCheck[0].checked)
+            if (sfCheck[0].checked) {
+                $("#sfShow").show()
+            } else {
+                $("#sfShow").hide()
+            }
+        })
+        hdCheck.click(() => {
+            console.log(hdCheck[0].checked)
+            if (hdCheck[0].checked) {
+                $("#hdShow").show()
+            } else {
+                $("#hdShow").hide()
+            }
+        })
+        ntCheck.click(() => {
+            console.log(ntCheck[0].checked)
+            if (ntCheck[0].checked) {
+                $("#ntShow").show()
+            } else {
+                $("#ntShow").hide()
+            }
+        })
+        scCheck.click(() => {
+            console.log(scCheck[0].checked)
+            if (scCheck[0].checked) {
+                $("#scShow").show()
+            } else {
+                $("#scShow").hide()
+            }
+        })
+        adCheck.click(() => {
+            console.log(adCheck[0].checked)
+            if (adCheck[0].checked) {
+                $("#adShow").show()
+            } else {
+                $("#adShow").hide()
+            }
+        })
     }
 })

@@ -1,0 +1,248 @@
+@font-face {
+    font-family: "Quite";
+    src: url("../fonts/Quite Magical - TTF.ttf");
+}
+
+body {
+    /* background-image: radial-gradient(circle at center, rgb(226, 231, 248), rgb(255, 255, 255)); */
+    background-image: url('../images/bg.png');
+    background-repeat: repeat;
+    background-size: auto;
+    backdrop-filter: blur(1px);
+}
+
+header {
+    background: linear-gradient(0, white, transparent);
+}
+
+.banner {
+    /* border-top: #007bff 3px solid; */
+}
+
+.card {
+    padding: 0;
+}
+
+.banner {
+    background-image: url('https://place-hold.it/900x350');
+    min-height: 350px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.logo-startup-default {
+    background-image: url('../images/start-up.jpg');
+    /* background-size: 400px 400px; */
+    background-size: contain;
+    min-width: 400px;
+    min-height: 400px;
+    max-width: 450px;
+    max-height: 450px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 50px 0 50px 0;
+}
+
+.logo-startup {
+    min-width: 400px;
+    min-height: 400px;
+    max-width: 450px;
+    max-height: 450px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 50px 0 50px 0;
+}
+
+.logo-startup img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50px 0 50px 0;
+}
+
+.titre-section {
+    margin-top: 5px;
+    padding: 0 15px 0 15px;
+    /* border-left: 3px #007bff solid;
+    border-right: 3px #007bff solid; */
+    border-bottom: 3px #007bff solid;
+    background-image: linear-gradient(0, white, transparent);
+    border-radius: 0 0 3px 3px;
+    /* background-color: rgba(44, 44, 44, 0.404); */
+    font-family: "Century Gothic";
+    font-weight: bolder;
+    font-size: 3.5em;
+}
+
+.sous-titre-section {
+    /* color: #007bff; */
+    margin-top: 5px;
+    padding: 0 15px 0 15px;
+    background-image: linear-gradient(0, white, transparent);
+    border-radius: 0 0 3px 3px;
+    font-family: "Century Gothic";
+    font-weight: lighter;
+    font-size: 1.7em;
+    text-decoration: underline #007bff;
+    width: fit-content;
+}
+
+.logoPSE {
+    width: 50px;
+    background-image: url('../images/logoPSE.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.logoSEN {
+    width: 50px;
+    background-image: url('../images/Flag_of_Senegal.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.redir {
+    /* border: #007bff 1px solid; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+}
+
+.redir .inscr {
+    border: #007bff 1px solid;
+    grid-column: 1;
+    height: 250px;
+    width: 250px;
+    border-radius: 50px 0 50px 0;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffffd3;
+    cursor: pointer;
+}
+
+.redir .conx {
+    border: #007bff 1px solid;
+    grid-column: 2;
+    height: 250px;
+    width: 250px;
+    border-radius: 0 50px 0 50px;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffffd3;
+    cursor: pointer;
+}
+
+.redir div .titre {
+    text-decoration: none;
+    font-size: 3.2em;
+    font-family: "Quite";
+}
+
+.redir div .descrip {
+    font-size: 1.4em;
+    font-family: "Quite";
+}
+
+.redir div:hover {
+    transition: all linear 0.2s;
+}
+
+.redir div:hover {
+    background-color: #007bff50;
+}
+
+footer.page-footer {
+    border-top: #007bff 3px solid;
+    background-image: linear-gradient(180deg, white, transparent);
+}
+
+footer .footer-copyright {
+    background-image: linear-gradient(0deg, white, transparent);
+    border-bottom: #007bff 5px solid;
+}
+
+.socials {
+    display: grid;
+    grid-template-areas: "facebook youtube" "instagram twitter";
+    /* justify-items: center;
+    align-items: center; */
+    height: 80%;
+}
+
+.socials a:nth-child(1) {
+    grid-area: instagram;
+    justify-self: end;
+    align-self: top;
+    color: gray;
+}
+
+.socials a:nth-child(1):hover {
+    color: indigo;
+}
+
+.socials a:nth-child(2) {
+    grid-area: facebook;
+    justify-self: end;
+    align-self: flex-end;
+    color: gray;
+}
+
+.socials a:nth-child(2):hover {
+    color: blue;
+}
+
+.socials a:nth-child(3) {
+    grid-area: twitter;
+    color: gray;
+}
+
+.socials a:nth-child(3):hover {
+    color: blue;
+}
+
+.socials a:nth-child(4) {
+    grid-area: youtube;
+    /* justify-self: end; */
+    align-self: flex-end;
+    color: gray;
+}
+
+.socials a:nth-child(4):hover {
+    color: red;
+}
+
+#logingif {
+    width: 500px;
+    border-radius: 100%;
+    border: 3px #265b94 solid;
+}
+
+fa-check-circle {
+    color: green;
+}
+
+.advanceDetails .list-group-item {
+    background-color: transparent;
+}
+
+.bgWhite .list-group-item {
+    background-color: white;
+}
+
+.secteurActivite .row .col {
+    text-align: center;
+}
+
+.secteurActivite .row .col span {
+    padding: 0;
+}
+
+.secteurActivite .row .col div.list-group {}

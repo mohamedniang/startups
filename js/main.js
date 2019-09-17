@@ -1,6 +1,26 @@
 $(document).ready(() => {
+    if (window.location.href.includes("signin")) {
+        $("#signinError").toast({
+            "delay": 3000
+        })
+        if (window.location.href.includes("er")) {
+            console.log($("#signinError"));
+            $("#signinError").toast("show")
+            $("#signinError").on("hidden.bs.toast", () => {
+                console.log("hidden");
+                history.replaceState('', '', 'index.php?page=signin');
+            })
+        }
+    }
     if (window.location.href.includes("signin.successfully")) {
-        $("#inscrConf").modal("show")
+        $("#addToast").toast({
+            "delay": 3000
+        })
+        $("#addToast").toast("show")
+        $("#addToast").on("hidden.bs.toast", () => {
+            console.log("hidden");
+            history.replaceState('', '', 'index.php?page=acceuil');
+        })
     }
     let widH = $(window).height();
     let pagH = $(".page").height();
@@ -27,5 +47,19 @@ $(document).ready(() => {
             window.location = "index.php?page=signin";
             return false;
         })
+    }
+    // active on the pagination
+    if (window.location.href.includes("&p=")) {
+        let p = window.location.href.split("&p=")[1]
+        console.log(p)
+            // let pLink = $("[href=\"index.php?page=listestartup&p=" + p + "\"]")
+        let pLink = $("ul.pagination li.page-item a.page-link")
+        console.log(typeof pLink);
+        for (const page of pLink) {
+            if (page.getAttribute("href").includes("&p=" + p)) {
+                page.parentNode.className += " active";
+                console.log(page.parentNode);
+            }
+        }
     }
 })

@@ -1,44 +1,31 @@
 <?php
 require 'conx.php';
-
-if (isset($_POST['dc'])) {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups ORDER BY date_creation DESC');
-} else if (isset($_POST['nt'])) {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups WHERE ict_network = 1 ORDER BY date_creation DESC');
-} else if (isset($_POST['sc'])) {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups WHERE ict_service = 1 ORDER BY date_creation DESC');
-} else if (isset($_POST['ad'])) {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups WHERE ict_advance = 1 ORDER BY date_creation DESC');
-} else if (isset($_POST['rg'])) {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups ORDER BY adresse DESC');
-} else {
-    $res = $bdd->query('SELECT denomination, adresse, id, description FROM listestartups');
-}
-
-if (isset($_POST['rech']) and !empty($_POST['rech'])) {
-    $rech = preg_replace("#[^0-9a-z]#i", "", $_POST['rech']);
-    // $rech = $_POST['rech'];
-    // $quest = "SELECT * FROM listestartups WHERE CONCAT('type', 'statut_juridique', 'denomination', 'date_creation', 'adresse', 'effectif', 'telephone_un', 'email', 'site_web', 'description', 'prenom', 'nom') LIKE '%".$rech."%'";
-    $quest = "SELECT * FROM listestartups WHERE denomination LIKE '%" . $rech . "%'";
-    $res_startup = $bdd->query($quest);
-}
+require 'listestartup.func.php';
+// print_r("<br> POST = ");
+// if(isset($_POST)) print_r($_POST);
+// print_r("<br> GET = ");
+// if(isset($_GET)) print_r($_GET);
+// print_r("<br> SESSION = ");
+// if(isset($_SESSION)) print_r($_SESSION);
 ?>
 <div class="container page">
-    <h1 class="titre-section">Toutes les startups</h1>
+    <h1 class="titre-section d-flex justify-content-between">Toutes les startups <i class="fa fa-list align-self-center"></i></h1>
     <div>
-        <form action="index.php?page=listestartup" method="POST" class="form-inline">
+        <form action="index.php?page=listestartup&p=1" method="POST" class="form-inline">
             <div class="form-group d-flex flex-fill justify-content-center">
-                <button type="submit" name="dc" class="btn btn-outline-info m-1 <?= isset($_POST['dc']) ? 'active' : '' ?>">Par Date De Creation<i class="fas fa-sort-down float-right"></i></button>
+                <button type="submit" name="dc" class="btn btn-outline-info m-1 <?= isset($_POST['dc']) ? 'active' : '' ?>">Par Date De Creation</button>
                 <!-- <button type="submit" name="sc" class="btn btn-outline-secondary flex-fill m-1 <?= isset($_POST['sc']) ? 'active' : '' ?>">Par Secteur<i class="fas fa-sort-down float-right"></i></button> -->
                 <div class="dropdown">
-                    <button class="btn btn-outline-info dropdown-toggle align-self-stretch" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Par Secteur</button>
+                    <button class="btn btn-outline-info dropdown-toggle align-self-stretch <?= $secteurActive ? "active" : "" ?>" data-toggle="dropdown" data-hover="dropdown" type="button">Par Secteur</button>
                     <div class="dropdown-menu dropdown-menu-left">
+                        <input type="submit" class="dropdown-item <?= isset($_POST['sf']) ? 'active' : '' ?>" name="sf" value="Software">
+                        <input type="submit" class="dropdown-item <?= isset($_POST['hd']) ? 'active' : '' ?>" name="hd" value="Hardware">
                         <input type="submit" class="dropdown-item <?= isset($_POST['nt']) ? 'active' : '' ?>" name="nt" value="ICT Network">
                         <input type="submit" class="dropdown-item <?= isset($_POST['sc']) ? 'active' : '' ?>" name="sc" value="ICT Services">
                         <input type="submit" class="dropdown-item <?= isset($_POST['ad']) ? 'active' : '' ?>" name="ad" value="ICT Advance">
                     </div>
                 </div>
-                <button type="submit" name="rg" class="btn btn-outline-info m-1 <?= isset($_POST['rg']) ? 'active' : '' ?>">Par Region<i class="fas fa-sort-down float-right"></i></button>
+                <button type="submit" name="rg" class="btn btn-outline-info m-1 <?= isset($_POST['rg']) ? 'active' : '' ?>">Par Region</button>
             </div>
         </form>
     </div>
@@ -53,10 +40,10 @@ if (isset($_POST['rech']) and !empty($_POST['rech'])) {
                         <span class="card-subtitle text-muted"><?= $a['adresse'] ?></span>
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><small><?= utf8_encode(substr($a['description'], 0, 75)) ?> ...</small></p>
+                        <p class="card-text"><small><?= substr($a['description'], 0, 75) ?> (...) </small></p>
                     </div>
-                    <div class="card-footer d-flex">
-                        <a href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-info d-flex flex-fill justify-content-around align-items-center"><span>Voir plus</span><i class="fa fa-angle-double-right"></i></a>
+                    <div class="card-footer d-flex justify-content-center">
+                        <a class="page-link" href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-outline-primary d-flex flex-fill justify-content-around align-items-center"><span>Voir plus</span><i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             <?php
@@ -70,12 +57,12 @@ if (isset($_POST['rech']) and !empty($_POST['rech'])) {
                         <span class="card-subtitle text-muted"><?= $a['adresse'] ?></span>
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><small><?= substr($a['description'], 0, 75) ?> ...</small></p>
+                        <p class="card-text text-center"><small><?= substr($a['description'], 0, 75) . " (...)" ?></small></p>
                     </div>
-                    <div class="card-footer d-flex">
-                        <a href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-info d-flex flex-fill justify-content-around align-items-center">
-                        <span>Voir plus</span>
-                        <i class="fa fa-angle-double-right"></i>
+                    <div class="card-footer d-flex justify-content-center">
+                        <a class="page-link" href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-outline-primary d-flex flex-fill justify-content-around align-items-center">
+                            <span>Voir plus</span>
+                            <i class="fa fa-angle-double-right"></i>
                         </a>
                     </div>
                 </div>
@@ -84,4 +71,35 @@ if (isset($_POST['rech']) and !empty($_POST['rech'])) {
         }
         ?>
     </div>
+    <?php if (ceil($totalCount / $nombreMax) > 1) : ?>
+        <ul class="pagination justify-content-center">
+            <?php if ($p > 1) : ?>
+                <li class="page-item">
+                    <a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p - 1 ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($p > 3) : ?>
+                <li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=1">1</a></li>
+                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+            <?php endif; ?>
+
+            <?php if ($p - 2 > 0) : ?><li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p - 2 ?>"><?php echo $p - 2 ?></a></li><?php endif; ?>
+            <?php if ($p - 1 > 0) : ?><li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p - 1 ?>"><?php echo $p - 1 ?></a></li><?php endif; ?>
+
+            <li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p ?>"><?php echo $p ?></a></li>
+
+            <?php if ($p + 1 < ceil($totalCount / $nombreMax) + 1) : ?><li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p + 1 ?>"><?php echo $p + 1 ?></a></li><?php endif; ?>
+            <?php if ($p + 2 < ceil($totalCount / $nombreMax) + 1) : ?><li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p + 2 ?>"><?php echo $p + 2 ?></a></li><?php endif; ?>
+
+            <?php if ($p < ceil($totalCount / $nombreMax) - 2) : ?>
+                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                <li class="page-item"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo ceil($totalCount / $nombreMax) ?>"><?php echo ceil($totalCount / $nombreMax) ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($p < ceil($totalCount / $nombreMax)) : ?>
+                <li class="next"><a class="page-link" href="index.php?page=listestartup&filter=<?= $filter ?>&p=<?php echo $p + 1 ?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+            <?php endif; ?>
+        </ul>
+    <?php endif; ?>
 </div>

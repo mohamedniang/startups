@@ -1,5 +1,6 @@
 <?php
     require 'conx.php';
+    require 'test.php';
 ?>
 <div class="container page">
         <h1>Section de formalisation</h1>

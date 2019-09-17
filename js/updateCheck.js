@@ -1,10 +1,10 @@
 $(document).ready(() => {
     if (window.location.href.includes("detail")) {
+        let urlID = window.location.href.split("id=")[1]; // this depend on what is sent by "modifstartups.php" /!\
         $("#updateToast").toast({
             "delay": 3000
         })
         if (window.location.href.includes("sc=added")) {
-            let urlID = window.location.href.split("id=")[1]; // this depend on what is sent by "modifstartups.php" /!\
             console.log(urlID);
             $("#updateToast").toast("show")
             $("#updateToast").on('hidden.bs.toast', () => {
@@ -12,6 +12,18 @@ $(document).ready(() => {
                 history.replaceState('', '', 'index.php?page=detail&id=' + urlID);
             });
             $("#updateToast").on('show.bs.toast', () => {
+                console.log("Toast component has been showed.");
+            });
+        } else if (window.location.href.includes("er")) {
+            $("#updateErrorToast").toast({
+                "delay": 3000
+            })
+            $("#updateErrorToast").toast("show")
+            $("#updateErrorToast").on('hidden.bs.toast', () => {
+                console.log("Toast component has been completely closed.");
+                history.replaceState('', '', 'index.php?page=detail&id=' + urlID);
+            });
+            $("#updateErrorToast").on('show.bs.toast', () => {
                 console.log("Toast component has been showed.");
             });
         }
@@ -205,5 +217,77 @@ $(document).ready(() => {
                 return
             }
         });
+
+        // for all the checkbox on the edit mode
+        let sfEditCheck = $("#softwareEdit")
+        if (sfEditCheck[0].checked) {
+            $("#sfShow").show()
+        } else {
+            $("#sfShow").hide()
+        }
+        let hdEditCheck = $("#hardwareEdit")
+        if (hdEditCheck[0].checked) {
+            $("#hdShow").show()
+        } else {
+            $("#hdShow").hide()
+        }
+        let ntEditCheck = $("#ict_networkEdit")
+        if (ntEditCheck[0].checked) {
+            $("#ntShow").show()
+        } else {
+            $("#ntShow").hide()
+        }
+        let scEditCheck = $("#ict_serviceEdit")
+        if (scEditCheck[0].checked) {
+            $("#scShow").show()
+        } else {
+            $("#scShow").hide()
+        }
+        let adEditCheck = $("#ict_advanceEdit")
+        if (adEditCheck[0].checked) {
+            $("#adShow").show()
+        } else {
+            $("#adShow").hide()
+        }
+        sfEditCheck.click(() => {
+            console.log(sfEditCheck[0].checked)
+            if (sfEditCheck[0].checked) {
+                $("#sfShow").show()
+            } else {
+                $("#sfShow").hide()
+            }
+        })
+        hdEditCheck.click(() => {
+            console.log(hdEditCheck[0].checked)
+            if (hdEditCheck[0].checked) {
+                $("#hdShow").show()
+            } else {
+                $("#hdShow").hide()
+            }
+        })
+        ntEditCheck.click(() => {
+            console.log(ntEditCheck[0].checked)
+            if (ntEditCheck[0].checked) {
+                $("#ntShow").show()
+            } else {
+                $("#ntShow").hide()
+            }
+        })
+        scEditCheck.click(() => {
+            console.log(scEditCheck[0].checked)
+            if (scEditCheck[0].checked) {
+                $("#scShow").show()
+            } else {
+                $("#scShow").hide()
+            }
+        })
+        adEditCheck.click(() => {
+            console.log(adEditCheck[0].checked)
+            if (adEditCheck[0].checked) {
+                $("#adShow").show()
+            } else {
+                $("#adShow").hide()
+            }
+        })
     }
-})
+});
