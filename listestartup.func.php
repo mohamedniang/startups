@@ -5,7 +5,7 @@ $filter = "";
 $nombreMax = 15;
 $p = (isset($_GET['p']) && is_numeric($_GET['p'])) ? $_GET['p'] : 1;
 
-if (isset($_POST['dc'])) {
+if (isset($_POST['dc']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "dc")) {
     $totalCountQuest = "SELECT COUNT(date_creation) FROM listestartups ";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -23,7 +23,7 @@ if (isset($_POST['dc'])) {
         $secteurActive = false;
         $filter = "dc";
     }
-} else if (isset($_POST['nt'])) {
+} else if (isset($_POST['nt']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "nt")) {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE ict_network = 1";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -41,7 +41,7 @@ if (isset($_POST['dc'])) {
         $secteurActive = true;
         $filter = "nt";
     }
-} else if (isset($_POST['sc'])) {
+} else if (isset($_POST['sc']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "sc")) {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE ict_service = 1";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -61,7 +61,7 @@ if (isset($_POST['dc'])) {
     } else {
         echo "error" . $bdd->error_get_last();
     }
-} else if (isset($_POST['ad'])) {
+} else if (isset($_POST['ad']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "ad")) {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE ict_advance = 1";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -97,7 +97,7 @@ if (isset($_POST['dc'])) {
         $secteurActive = true;
         $filter = "sf";
     }
-} else if (isset($_POST['hd'])) {
+} else if (isset($_POST['hd']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "hd")) {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE hardware = 1";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -115,7 +115,7 @@ if (isset($_POST['dc'])) {
         $secteurActive = true;
         $filter = "hd";
     }
-} else if (isset($_POST['rg'])) {
+} else if (isset($_POST['rg']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "rg")) {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups ";
     if ($totalCount = $bdd->query($totalCountQuest)) {
         $totalCount = $totalCount->fetch_row()[0];
@@ -132,6 +132,27 @@ if (isset($_POST['dc'])) {
         $req->close();
         $secteurActive = false;
         $filter = "rg";
+    }
+} else if (isset($_POST['rech']) and !empty($_POST['rech']) || (isset($_GET['filter']) && !empty($_GET['filter']) && $_GET['filter'] == "rech")) {
+    $rech = preg_replace("#[^0-9a-z]#i", "", $_POST['rech']);
+    $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE denomination LIKE '%" . $rech . "%'";
+    if ($totalCount = $bdd->query($totalCountQuest)) {
+        $totalCount = $totalCount->fetch_row()[0];
+    } else {
+        echo "error rech";
+    }
+    if ($req = $bdd->prepare("SELECT * FROM listestartups WHERE denomination LIKE '%" . $rech . "%' LIMIT ?,?")) {
+        // Calculate LIMIT ?,? the page to get the results we need from our table.
+        $calc_page = ($p - 1) * $nombreMax;
+        $req->bind_param('ii', $calc_page, $nombreMax);
+        $req->execute();
+        // Get the results...
+        $res_startup = $req->get_result();
+        $req->close();
+        $secteurActive = false;
+        $filter = "rech";
+    } else {
+        echo "error while preparing the request";
     }
 } else {
     $totalCountQuest = "SELECT COUNT(*) FROM listestartups ";
@@ -150,25 +171,5 @@ if (isset($_POST['dc'])) {
         $req->close();
         $secteurActive = false;
         $filter = "";
-    }
-}
-
-if (isset($_POST['rech']) and !empty($_POST['rech'])) {
-    $rech = preg_replace("#[^0-9a-z]#i", "", $_POST['rech']);
-    $totalCountQuest = "SELECT COUNT(*) FROM listestartups WHERE denomination LIKE '%" . $rech . "%'";
-    if ($totalCount = $bdd->query($totalCountQuest)) {
-        $totalCount = $totalCount->fetch_row()[0];
-    } else {
-        echo "error rech";
-    }
-    if ($req = $bdd->prepare("SELECT * FROM listestartups WHERE denomination LIKE '%" . $rech . "%' LIMIT ?,?")) {
-        // Calculate LIMIT ?,? the page to get the results we need from our table.
-        $calc_page = ($p - 1) * $nombreMax;
-        $req->bind_param('ii', $calc_page, $nombreMax);
-        $req->execute();
-        // Get the results...
-        $res_startup = $req->get_result();
-        $req->close();
-        $secteurActive = false;
     }
 }

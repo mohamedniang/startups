@@ -59,21 +59,21 @@ $(document).ready(() => {
                 let telValid = false;
                 let efftValid = false;
 
-                console.log(
-                    "denomination = " + denomination[0].value + "\n",
-                    "type = " + type[0].value + "\n",
-                    "statut_juridique = " + statut_juridique[0].value + "\n",
-                    "date_creation = " + date_creation[0].value + "\n",
-                    "adresse = " + adresse[0].value + "\n",
-                    "email = " + email[0].value + "\n",
-                    "siteweb = " + siteweb[0].value + "\n",
-                    "description = " + description[0].value + "\n",
-                    "secteur = " + secteur[0].value + "\n",
-                    "prenom = " + prenom[0].value + "\n",
-                    "nom = " + nom[0].value + "\n",
-                    "tel = " + tel[0].value + "\n",
-                    "efft = " + efft[0].value + "\n"
-                );
+                // console.log(
+                //     "denomination = " + denomination[0].value + "\n",
+                //     "type = " + type[0].value + "\n",
+                //     "statut_juridique = " + statut_juridique[0].value + "\n",
+                //     "date_creation = " + date_creation[0].value + "\n",
+                //     "adresse = " + adresse[0].value + "\n",
+                //     "email = " + email[0].value + "\n",
+                //     "siteweb = " + siteweb[0].value + "\n",
+                //     "description = " + description[0].value + "\n",
+                //     "secteur = " + secteur[0].value + "\n",
+                //     "prenom = " + prenom[0].value + "\n",
+                //     "nom = " + nom[0].value + "\n",
+                //     "tel = " + tel[0].value + "\n",
+                //     "efft = " + efft[0].value + "\n"
+                // );
 
                 if (denomination[0].validity.valid) {
                     denomination.addClass("border border-success")

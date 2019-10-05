@@ -14,7 +14,7 @@
                         <span class="font-weight-bold"><i class="fa fa-mailbox"></i> </span><a class="text-blue" href="#">BP 4027 Dakar</a>
                     </li>
                     <li>
-                        <span class="font-weight-bold"><i class="fa fa-envelope"></i> </span><a class="text-blue" href="#">mouhamedniang1997@gmail.com</a>
+                        <span class="font-weight-bold"><i class="fa fa-envelope"></i> </span><a class="text-blue" href="mailto:bambadath@yahoo.fr">bambadath@yahoo.fr</a>
                     </li>
                 </ul>
             </div>
@@ -60,16 +60,22 @@
     <div class="container-fluid row">
         <div class="col">
             <h5 class="text-uppercase">Contacter un administrateur</h5>
-            <form action="#" method="post">
+            <form action="mailAdmin.php" method="post">
                 <div class="form-group">
                     <!-- <label for="ctmail">Adresse email</label> -->
-                    <input class="form-control" type="email" name="ctmail" id="ctmail" placeholder="ex: contact@gmail.com">
+                    <input class="form-control" type="email" name="ctmail" id="ctmail" placeholder="ex: contact@gmail.com" required>
+                </div>
+                <div class="valid-feedback">
+                    good username.
+                </div>
+                <div class="invalid-feedback">
+                    Please choose a username.
                 </div>
                 <div class="form-group">
                     <!-- <label for="cttext">Message</label> -->
-                    <textarea class="form-control" name="cttext" id="cttext" cols="60" rows="2" placeholder="Votre message ici !"></textarea>
+                    <textarea class="form-control" name="cttext" id="cttext" cols="60" rows="2" placeholder="Votre message ici !" required></textarea>
                 </div>
-                <input type="submit" class="btn btn-light" value="Envoyer un rapport">
+                <input type="submit" class="btn btn-light" name="submit" value="Envoyer un rapport">
             </form>
         </div>
         <div class="col">
@@ -83,9 +89,10 @@
         </div>
     </div>
     <div class="divider"></div>
-    <div class="footer-copyright text-center py-3 d-flex justify-content-around">
+    <hr>
+    <div class="footer-copyright text-center row justify-content-around">
         <span>© 2019 Copyright:<a href="#" class="text-secondary"> Ministère de l'economie numerique et des télécomunications</a></span>
-        <span class="border-left border-right border-dark align-self-stretch"></span>
+        <!-- <span class="border-left border-right border-dark align-self-stretch"></span> -->
         <span>Réalisé par Mohamed NIANG</span>
     </div>
 </footer>

@@ -20,6 +20,7 @@ session_start();
 
 <body>
     <?php
+    // if(!isset(($_GET['page']))) $_GET['page'] = "acceuil";
     require_once "navigation.php";
     if (isset($_GET['page']) and !empty($_GET['page'])) {
         require $_GET['page'] . '.php';
@@ -31,7 +32,7 @@ session_start();
 
     <!-- All toast and modals -->
 
-    <?php if (isset($_GET['sc']) && $_GET['sc'] == "added") : ?>
+    <!-- <?php if (isset($_GET['sc']) && $_GET['sc'] == "added") : ?>
         <div class="toast" id="updateToast" style="position: absolute; top: 20px; right: 20px; z-index: 1000;" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <strong class="mr-auto"><i class="fa fa-check-circle"></i> Modifications éffectuées</strong>
@@ -42,7 +43,7 @@ session_start();
                 Vos modifications ont étaient bien enregistrés .
             </div>
         </div>
-    <?php endif; ?>
+    <?php endif; ?> -->
     <?php if (isset($_GET['er'])) : ?>
         <div class="toast" id="updateErrorToast" style="position: absolute; top: 20px; right: 20px; z-index: 1000;" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body">
@@ -74,15 +75,10 @@ session_start();
     </div>
     <!-- end of the modal -->
     <!-- a confirmation toast -->
-    <?php if(isset($_GET['sc']) && $_GET['sc'] == "signin.successfully") : ?>
+    <?php if(isset($_GET['sc'])) : ?>
     <div class="toast" id="addToast" style="position: absolute; top: 20px; right: 20px; z-index: 1000;" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="mr-auto"><i class="fa fa-check-circle"></i>Startup Ajouté</strong>
-            <small>Il y'a 30 sec</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-        </div>
         <div class="toast-body">
-            Votre startup a bien été ajouté.
+        Succée : <span style="color: green;"><?= implode(" ", explode(".", $_GET['sc'])) ?>.</span>
         </div>
     </div>
     <?php endif; ?>
@@ -101,5 +97,6 @@ session_start();
 <script src="js\form-tabs.js"></script>
 <script src="js\jquery.validate.js"></script>
 <script src="js\updateCheck.js"></script>
+<script src="js\navigation.js"></script>
 
 </html>

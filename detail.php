@@ -72,23 +72,26 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
                         <?php }; ?>
                         </div>
                         <?php if (isset($editMode) and $editMode == true) : ?>
-                                <div class="form-group">
-                                    <input type="file" class="form-control" id="img-file" name="img-file" >
-                                    <!-- <label class="label" for="img-file">Choose file</label> -->
+                            <div class="input-group mt-2">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="img-file" name="img-file">
+                                    <label class="custom-file-label" for="img-file">Choisissez votre image</label>
                                 </div>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-info" data-trigger="hover" data-toggle="popover" title="Caractéristique requise:" data-content="Assurez vous que votre image soit de forme carrée, et que sa taille soit au maximal 5mb"><i class="fas fa-info-circle"></i></button>
+                                </div>
+                            </div>
                         <?php endif; ?>
                     </div>
                     <div class="col align-content-center">
                         <?php
                         if (isset($editMode) and $editMode == true) {
-                            // if ($editMode) {
                             ?>
                             <div class="form-group">
                                 <input class="form-control flex-fill form-control-lg" name="denomination" value="<?= $elt['denomination'] ?>">
                             </div>
                             <div class="form-group form-inline">
                                 <label class="font-weight-bold mr-1">Type :</label>
-                                <!-- <input class="form-control flex-fill" value="<?= $elt['type'] ?>"> -->
                                 <div class="custom-control d-flex">
                                     <div class="custom-control custom-radio mr-5">
                                         <input class="custom-control-input" type="radio" id="startup" name="type" value="startup" <?= ($elt['type'] == 'STARTUP' || $elt['type'] == '') ? 'checked' : '' ?>>
@@ -99,10 +102,6 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
                                         <label class="custom-control-label" for="pme">PME / PMI</label>
                                     </div>
                                 </div>
-                                <!-- <select name="type" id="type" class="form-control">
-                    <option value="startup">STARTUP</option>
-                    <option value="pme">PME/PMI</option>
-                </select> -->
                             </div>
                             <div class="form-group form-inline">
                                 <label class="font-weight-bold mr-1">Statut Juridique:</label>
@@ -126,7 +125,7 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
                             </div>
                             <div class="form-group form-inline">
                                 <label class="font-weight-bold mr-1">Email:</label>
-                                <input class="form-control flex-fill" pattern="((\w{2,})(.))?(\w{2,})@\w{3,}(\.)\w{2,}" name="email" value="<?= $elt['email'] ?>">
+                                <input class="form-control flex-fill" pattern="((\w{2,})(.))?(\w{2,})@\w{3,}(\-\w{2,})?(\.)\w{2,}" name="email" value="<?= $elt['email'] ?>">
                             </div>
                             <div class="form-group form-inline">
                                 <label class="font-weight-bold mr-1">Site Web:</label>
@@ -152,7 +151,6 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
                 <h2 class="sous-titre-section"><?= $editMode ? "Modifications Des Détails Avancées" : "Détails Avancées" ?></h2>
                 <?php
                 if (isset($editMode) and $editMode == true) {
-                    // if ($editMode) {
                     ?>
                     <div class="form-group form-inline d-flex">
                         <span class="font-weight-bold mr-1">Description:</span>

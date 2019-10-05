@@ -57,6 +57,7 @@ header {
 }
 
 .logo-startup img {
+    /* width: ; */
     max-width: 100%;
     max-height: 100%;
     border-radius: 50px 0 50px 0;
@@ -165,6 +166,8 @@ footer.page-footer {
 }
 
 footer .footer-copyright {
+    width: 100%;
+    margin-right: 0px;
     background-image: linear-gradient(0deg, white, transparent);
     border-bottom: #007bff 5px solid;
 }
@@ -185,7 +188,7 @@ footer .footer-copyright {
 }
 
 .socials a:nth-child(1):hover {
-    color: indigo;
+    color: rgb(89, 10, 92);
 }
 
 .socials a:nth-child(2) {
@@ -196,7 +199,7 @@ footer .footer-copyright {
 }
 
 .socials a:nth-child(2):hover {
-    color: blue;
+    color: rgb(32, 32, 236);
 }
 
 .socials a:nth-child(3) {
@@ -245,4 +248,52 @@ fa-check-circle {
     padding: 0;
 }
 
-.secteurActivite .row .col div.list-group {}
+ul.navbar-nav a.nav-link {
+    /* margin-bottom: 10px; */
+    transition: background-image 1s ease-in;
+}
+
+nav.navbar li.nav-item {
+    /* justify-content: center; */
+}
+
+ul.navbar-nav a.nav-link:hover {
+    /* border-bottom: #007bff 1px solid; */
+    background-image: radial-gradient(circle at center, white, transparent);
+}
+
+ul.navbar-nav a.nav-link.active {
+    background-image: repeating-radial-gradient(circle at top right, white, transparent, white);
+}
+
+@media screen and (max-width: 576px) {
+    .logo-startup-default {
+        margin: auto;
+        background-image: url('../images/start-up.jpg');
+        background-size: contain;
+        min-width: 70%;
+        min-height: 70%;
+        max-width: 80%;
+        max-height: 80%;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-radius: 50px 0 50px 0;
+    }
+    .logo-startup {
+        margin: auto;
+        min-width: 250px;
+        min-height: 250px;
+        max-width: 80%;
+        max-height: 80%;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-radius: 50px 0 50px 0;
+    }
+    .logo-startup img {
+        max-width: 250px;
+        max-height: 250px;
+        /* border-radius: 50px 0 50px 0; */
+    }
+}

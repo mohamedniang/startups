@@ -160,7 +160,7 @@ $(document).ready(() => {
                     description.addClass("border border-danger");
                     descriptionValid = false
                 }
-                if (secteur[0].validity.valid && secteur[0].value != "") {
+                if (secteur[0].validity.valid) {
                     secteur.addClass("border border-success");
                     secteur.removeClass("border border-danger");
                     secteurValid = true

@@ -9,14 +9,13 @@ require 'listestartup.func.php';
 // if(isset($_SESSION)) print_r($_SESSION);
 ?>
 <div class="container page">
-    <h1 class="titre-section d-flex justify-content-between">Toutes les startups <i class="fa fa-list align-self-center"></i></h1>
+    <h1 class="titre-section d-flex justify-content-between">Toutes les entreprises <i class="fa fa-list align-self-center"></i></h1>
     <div>
         <form action="index.php?page=listestartup&p=1" method="POST" class="form-inline">
             <div class="form-group d-flex flex-fill justify-content-center">
-                <button type="submit" name="dc" class="btn btn-outline-info m-1 <?= isset($_POST['dc']) ? 'active' : '' ?>">Par Date De Creation</button>
-                <!-- <button type="submit" name="sc" class="btn btn-outline-secondary flex-fill m-1 <?= isset($_POST['sc']) ? 'active' : '' ?>">Par Secteur<i class="fas fa-sort-down float-right"></i></button> -->
+                <button type="submit" name="dc" class="btn btn-outline-info m-1 p-0 <?= isset($_POST['dc']) ? 'active' : '' ?>">Par Date De Creation</button>
                 <div class="dropdown">
-                    <button class="btn btn-outline-info dropdown-toggle align-self-stretch <?= $secteurActive ? "active" : "" ?>" data-toggle="dropdown" data-hover="dropdown" type="button">Par Secteur</button>
+                    <button class="btn btn-outline-info m-1 p-0 dropdown-toggle align-self-stretch <?= $secteurActive ? "active" : "" ?>" data-trigger="hover" data-toggle="dropdown" type="button" id="secteurDropdown">Par Secteur</button>
                     <div class="dropdown-menu dropdown-menu-left">
                         <input type="submit" class="dropdown-item <?= isset($_POST['sf']) ? 'active' : '' ?>" name="sf" value="Software">
                         <input type="submit" class="dropdown-item <?= isset($_POST['hd']) ? 'active' : '' ?>" name="hd" value="Hardware">
@@ -25,33 +24,39 @@ require 'listestartup.func.php';
                         <input type="submit" class="dropdown-item <?= isset($_POST['ad']) ? 'active' : '' ?>" name="ad" value="ICT Advance">
                     </div>
                 </div>
-                <button type="submit" name="rg" class="btn btn-outline-info m-1 <?= isset($_POST['rg']) ? 'active' : '' ?>">Par Region</button>
+                <button type="submit" name="rg" class="btn btn-outline-info m-1 p-0 <?= isset($_POST['rg']) ? 'active' : '' ?>">Par Region</button>
             </div>
         </form>
     </div>
     <div class="row justify-content-center">
         <?php
         if (isset($res_startup) and $_POST['rech'] != "") {
-            while ($a = $res_startup->fetch_array()) {
+            if ($res_startup->num_rows == 0) {
                 ?>
-                <div class="card col-2 mr-3 mb-3" style="width: 300px;">
-                    <div class="card-header">
-                        <h6 class="card-title text-capitalize"><?= $a['denomination'] ?></h6>
-                        <span class="card-subtitle text-muted"><?= $a['adresse'] ?></span>
+                <span>Pas de resultat pour "<b><?= $rech ?></b>"</span>
+                <?php
+                    } else {
+                        while ($a = $res_startup->fetch_array()) {
+                            ?>
+                    <div class="card col-2 mr-3 mb-3" style="width: 300px;">
+                        <div class="card-header">
+                            <h6 class="card-title text-capitalize"><?= $a['denomination'] ?></h6>
+                            <span class="card-subtitle text-muted"><?= $a['adresse'] ?></span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><small><?= substr($a['description'], 0, 75) ?> (...) </small></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <a class="page-link" href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-outline-primary d-flex flex-fill justify-content-around align-items-center"><span>Voir plus</span><i class="fa fa-angle-double-right"></i></a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text"><small><?= substr($a['description'], 0, 75) ?> (...) </small></p>
-                    </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <a class="page-link" href="index.php?page=detail&id=<?= $a['id'] ?>" class="btn btn-outline-primary d-flex flex-fill justify-content-around align-items-center"><span>Voir plus</span><i class="fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            <?php
-                }
-            } else {
-                while ($a = $res->fetch_array()) {
-                    ?>
-                <div class="card col-2 mr-3 mb-3" style="width: 300px;">
+                <?php
+                        }
+                    }
+                } else {
+                    while ($a = $res->fetch_array()) {
+                        ?>
+                <div class="card col-lg-2 col-sm-10 col-md-5 mr-3 mb-3" style="width: 300px;">
                     <div class="card-header">
                         <h6 class="card-title text-capitalize"><?= $a['denomination'] ?></h6>
                         <span class="card-subtitle text-muted"><?= $a['adresse'] ?></span>

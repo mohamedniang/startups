@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'conx.php';
 require 'addEditShare.php';
 
@@ -27,9 +28,10 @@ if (isset($_POST) and !empty($_POST)) {
         sous_domaine_hard,
         sous_domaine_ict_network,
         sous_domaine_ict_service,
-        sous_domaine_ict_advance
+        sous_domaine_ict_advance,
+        ownerID
     ) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)')) {
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)')) {
 
         $type = htmlspecialchars($_POST['type']) == "startup" ? "STARTUP" : "PME/PMI";
         $denomination = htmlspecialchars($_POST['denomination']);
@@ -50,9 +52,9 @@ if (isset($_POST) and !empty($_POST)) {
         $ict_network = isset($_POST['ict_network']) ? 1 : 0;
         $ict_service = isset($_POST['ict_service']) ? 1 : 0;
         $ict_advance = isset($_POST['ict_advance']) ? 1 : 0;
-        
+
         $req->bind_param(
-            "ssssssssssssiiiiiisssss",
+            "ssssssssssssiiiiiisssssi",
             $type,
             $statut_juridique,
             $denomination,
@@ -75,16 +77,12 @@ if (isset($_POST) and !empty($_POST)) {
             $hdFinal,
             $ntFinal,
             $scFinal,
-            $adFinal
+            $adFinal,
+            $_SESSION['id']
         );
-        // print_r($sfFinal."<br/>");
-        // print_r($hdFinal."<br/>");
-        // print_r($ntFinal."<br/>");
-        // print_r($scFinal."<br/>");
-        // print_r($adFinal."<br/>");
         $req->execute();
         echo "Records added successfully.";
-        header('Location: index.php?page=acceuil&sc=signin.successfully');
+        header('Location: index.php?page=acceuil&sc=startup.added.successfully');
     } else {
         echo "ERROR: Could not be able to execute" . mysqli_error($bdd);
         // header('Location: index.php?page=acceuil');

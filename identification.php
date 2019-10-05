@@ -14,22 +14,14 @@ $regions = json_decode($regions, true);
                 <fieldset class="form-group">
                     <div class="row">
                         <legend class="col-form-label col-1 pt-0">Type:</legend>
-                        <div class="col-auto row">
-                            <div class="input-group col">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input type="radio" name="type" value="startup" checked>
-                                    </div>
-                                </div>
-                                <input type="text" name="startupLabel" id="startupLabel" disabled value="STARTUP" class="form-control">
+                        <div class="custom-control d-flex">
+                            <div class="custom-control custom-radio mr-5">
+                                <input class="custom-control-input" type="radio" id="startup" name="type" value="startup" checked>
+                                <label class="custom-control-label" for="startup">STARTUP</label>
                             </div>
-                            <div class="input-group col">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input type="radio" value="pme" name="type">
-                                    </div>
-                                </div>
-                                <input type="text" name="pmeLabel" id="pmeLabel" disabled value="PME / PMI" class="form-control">
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="pme" name="type" value="pme/pmi">
+                                <label class="custom-control-label" for="pme">PME / PMI</label>
                             </div>
                         </div>
                 </fieldset>
@@ -73,145 +65,191 @@ $regions = json_decode($regions, true);
                         <span class="">Secteur(s) d'Activité(s)</span>
                         <div class="row">
                             <div class="col d-flex flex-column">
-                                <div class="input-group form-control align-content-center justify-content-center">
-                                    <input type="checkbox" name="software" id="software" class="align-self-center mr-2">
-                                    <label for="software" class="mb-0 align-self-baseline">SOFTWARE</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="software" id="software" class="align-self-center mr-2 custom-control-input">
+                                    <label for="software" class="mb-0 align-self-baseline custom-control-label">SOFTWARE</label>
                                 </div>
                                 <div id="sfShow">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sf1" id="sf1" class="align-self-center mr-1">
-                                            <label class="mb-0">Développement logiciel métier</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sf1" id="sf1" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sf1">Développement logiciel métier</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sf2" id="sf2" class="align-self-center mr-1">
-                                            <label class="mb-0">Base de données</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sf2" id="sf2" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sf2">Base de données</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sf3" id="sf3" class="align-self-center mr-1">
-                                            <label class="mb-0">Applications web</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sf3" id="sf3" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sf3">Applications web</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sf4" id="sf4" class="align-self-center mr-1">
-                                            <label class="mb-0">Applications mobile</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sf4" id="sf4" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sf4">Applications mobile</label>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <div class="input-group form-control align-content-center justify-content-center">
-                                    <input type="checkbox" name="hardware" id="hardware" class="align-self-center mr-2">
-                                    <label for="hardware" class="mb-0 align-self-baseline">HARDWARE</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="hardware" id="hardware" class="align-self-center mr-2 custom-control-input">
+                                    <label for="hardware" class="mb-0 align-self-baseline custom-control-label">HARDWARE</label>
                                 </div>
                                 <div id="hdShow">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="hd1" id="hd1" class="align-self-center mr-1">
-                                            <label class="mb-0">Composants électroniques et assemblage</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="hd1" id="hd1" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="hd1">Composants électroniques et assemblage</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="hd2" id="hd2" class="align-self-center mr-1">
-                                            <label class="mb-0">Ordinateurs et équipements informatiques</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="hd2" id="hd2" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="hd2">Ordinateurs et équipements informatiques</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="hd3" id="hd3" class="align-self-center mr-1">
-                                            <label class="mb-0">Terminaux mobiles et accessoires</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="hd3" id="hd3" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="hd3">Terminaux mobiles et accessoires</label>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <div class="input-group form-control align-content-center justify-content-center">
-                                    <input type="checkbox" name="ict_network" id="ict_network" class="align-self-center mr-2">
-                                    <label for="ict_network" class="mb-0 align-self-baseline">ICT NETWORK</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="ict_network" id="ict_network" class="align-self-center mr-2 custom-control-input">
+                                    <label for="ict_network" class="mb-0 align-self-baseline custom-control-label">ICT NETWORK</label>
                                 </div>
                                 <div id="ntShow">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="nt1" id="nt1" class="align-self-center mr-1">
-                                            <label class="mb-0">Télécoms</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="nt1" id="nt1" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="nt1">Télécoms</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="nt2" id="nt2" class="align-self-center mr-1">
-                                            <label class="mb-0">Services réseaux</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="nt2" id="nt2" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="nt2">Services réseaux</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="nt3" id="nt3" class="align-self-center mr-1">
-                                            <label class="mb-0">Hosting, cloud</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="nt3" id="nt3" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="nt3">Hosting, cloud</label>
+                                            </div>
                                         </li>
 
                                     </ul>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <div class="input-group form-control align-content-center justify-content-center">
-                                    <input type="checkbox" name="ict_service" id="ict_service" class="align-self-center mr-2">
-                                    <label for="ict_service" class="mb-0 align-self-baseline">ICT SERVICE</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="ict_service" id="ict_service" class="align-self-center mr-2 custom-control-input">
+                                    <label for="ict_service" class="mb-0 align-self-baseline custom-control-label">ICT SERVICE</label>
                                 </div>
                                 <div id="scShow">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc1" id="sc1" class="align-self-center mr-1">
-                                            <label class="mb-0">Sécurité, monitoring</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc1" id="sc1" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc1">Sécurité, monitoring</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc2" id="sc2" class="align-self-center mr-1">
-                                            <label class="mb-0">E-Payement, Fintech</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc2" id="sc2" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc2">E-Payement, Fintech</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc3" id="sc3" class="align-self-center mr-1">
-                                            <label class="mb-0">E-commerce</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc3" id="sc3" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc3">E-commerce</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc4" id="sc4" class="align-self-center mr-1">
-                                            <label class="mb-0">E-santé</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc4" id="sc4" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc4">E-santé</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc5" id="sc5" class="align-self-center mr-1">
-                                            <label class="mb-0">E-agriculture</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc5" id="sc5" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc5">E-agriculture</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="sc6" id="sc6" class="align-self-center mr-1">
-                                            <label class="mb-0">E-éducation</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="sc6" id="sc6" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="sc6">E-éducation</label>
+                                            </div>
                                         </li>
 
                                     </ul>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column">
-                                <div class="input-group form-control align-content-center justify-content-center">
-                                    <input type="checkbox" name="ict_advance" id="ict_advance" class="align-self-center mr-2">
-                                    <label for="ict_advance" class="mb-0 align-self-baseline">ICT ADVANCE</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="ict_advance" id="ict_advance" class="align-self-center mr-2 custom-control-input">
+                                    <label for="ict_advance" class="mb-0 align-self-baseline custom-control-label">ICT ADVANCE</label>
                                 </div>
                                 <div id="adShow">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad1" id="ad1" class="align-self-center mr-1">
-                                            <label class="mb-0">IIoT (internet des objets industrielles)</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad1" id="ad1" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad1">IIoT (internet des objets industrielles)</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad2" id="ad2" class="align-self-center mr-1">
-                                            <label class="mb-0">Intelligence Artificielle (IA)</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad2" id="ad2" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad2">Intelligence Artificielle (IA)</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad5" id="ad5" class="align-self-center mr-1">
-                                            <label class="mb-0">Big Data</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad5" id="ad5" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad5">Big Data</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad7" id="ad7" class="align-self-center mr-1">
-                                            <label class="mb-0">AR/VR (réalités augmentées/réalités virtuelles)</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad7" id="ad7" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad7">AR/VR (réalités augmentées/réalités virtuelles)</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad8" id="ad8" class="align-self-center mr-1">
-                                            <label class="mb-0">Animation 3D</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad8" id="ad8" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad8">Animation 3D</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad9" id="ad9" class="align-self-center mr-1">
-                                            <label class="mb-0">IoT (internet des objets)</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad9" id="ad9" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad9">IoT (internet des objets)</label>
+                                            </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-start p-1">
-                                            <input type="checkbox" name="ad10" id="ad10" class="align-self-center mr-1">
-                                            <label class="mb-0">Drone, robotique</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="ad10" id="ad10" class="align-self-center mr-1 custom-control-input">
+                                                <label class="custom-control-label" for="ad10">Drone, robotique</label>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>

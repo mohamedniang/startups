@@ -25,20 +25,20 @@ $res = $bdd->query($quest);
                 <div class="carousel-item">
                     <img src="images\slider-02_crop.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption">
-                        <h2>Toutes les startups aux Sénégal sont recenser ici.</h2>
+                        <h2>Toutes les startups et pme du numérique aux Sénégal sont recenser ici.</h2>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="images\slider-03_crop.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption">
-                        <h2>Inscrivez votre startup gratuitement</h2>
+                        <h2>Inscrivez votre entreprise gratuitement</h2>
                         <p>Remplissez le formulaire</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="images\slider-04_crop.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption">
-                        <h2>Inscrivez votre startup et bénéficier d'une reconnaissance étatique</h2>
+                        <h2>Inscrivez votre entreprise et bénéficier d'une reconnaissance étatique</h2>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@ $res = $bdd->query($quest);
             <?php
             while ($a = $res->fetch_array()) {
                 ?>
-                <div class="card col mr-1 mb-3 shadow">
+                <div class="card col-lg col-sm mr-1 mb-3 shadow">
                     <img src="./images/rocket_startup.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h6 class="card-title"><?= $a['denomination'] ?></h4>

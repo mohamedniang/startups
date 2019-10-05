@@ -127,7 +127,7 @@ if (isset($_POST) and !empty($_POST)) {
 
         if ($req->execute()) {
             echo "Records added successfully.";
-            header('Location: index.php?page=detail&sc=added&id=' . $_GET['id']);
+            header('Location: index.php?page=detail&sc=startup.updated.successfully&id=' . $_GET['id']);
         } else {
             echo "ERROR: Could not be able to execute" . mysqli_error($bdd);
             // header('Location: index.php?page=acceuil');
